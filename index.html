@@ -52,61 +52,6 @@
             margin: 0 auto;
         }
 
-        /* Whitepaper Page Styles */
-        .whitepaper-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .whitepaper-header {
-            background-color: var(--card-bg);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1001;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(139, 115, 85, 0.2);
-        }
-
-        .whitepaper-content {
-            margin-top: 80px;
-            padding: 2rem 0;
-        }
-
-        .whitepaper-content iframe {
-            width: 100%;
-            height: calc(100vh - 150px);
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-to-main {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--highlight);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .back-to-main:hover {
-            color: var(--dark-brown);
-            transform: translateX(-5px);
-        }
-
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.95);
@@ -726,10 +671,6 @@
                 right: 15px;
                 bottom: 90px;
             }
-
-            .whitepaper-content iframe {
-                height: calc(100vh - 120px);
-            }
         }
 
         @media (max-width: 576px) {
@@ -756,285 +697,212 @@
     </style>
 </head>
 <body>
-    <!-- Whitepaper Page -->
-    <div class="whitepaper-page" id="whitepaperPage">
-        <header class="whitepaper-header">
-            <div class="container">
-                <div class="navbar">
-                    <div class="logo">
-                        <img src="https://i.postimg.cc/hj1S9gKf/IMG-20251115-170233-360.jpg" alt="DADACOIN Logo">
-                        <span class="logo-text">DADACOIN Whitepaper</span>
+    <!-- Main Website Content -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/hj1S9gKf/IMG-20251115-170233-360.jpg" alt="DADACOIN Logo">
+                    <span class="logo-text">DADACOIN</span>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#about">About</a>
+                    <a href="#tokenomics">Tokenomics</a>
+                    <a href="#roadmap">Roadmap</a>
+                </div>
+                <div class="nav-actions">
+                    <!-- UPDATED: Now links to /whitepaper/ folder -->
+                    <a href="/whitepaper/" class="btn btn-secondary">Whitepaper</a>
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>The Grumpy Panda Memecoin</h1>
+                <p>DADACOIN is a satire, a caricature of the crypto world, built through dark humor and the sharp personality of its grumpy panda mascot.</p>
+                <div class="hero-actions">
+                    <!-- UPDATED: Now links to /whitepaper/ folder -->
+                    <a href="/whitepaper/" class="btn btn-secondary">Read Whitepaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">ABOUT DADACOIN</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Most popular memecoins rely on bright colors, cute animals, and a cheerful atmosphere. As a result, they all end up looking the same — the same style, the same energy, the same empty promises.</p>
+                    <p>DADACOIN will not follow this formula. Instead, it will take a radically different approach. Its mascot is a grumpy panda, tired of market illusions and amused by the surrounding naivety — a character who finds nearly everything ridiculous, especially other memecoins he sees as simple clones.</p>
+                    <p>DADACOIN will embody an original ideology: a satire, a caricature of the crypto world, built through dark humor and the sharp personality of its mascot. It is a parody of the market, a universe that has become too euphoric, too noisy, too "woof-woof."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tokenomics" class="tokenomics">
+        <div class="container">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="tokenomics-content">
+                <div class="tokenomics-chart">
+                    <div class="chart-container">
+                        <canvas id="tokenomicsChart"></canvas>
                     </div>
-                    <div class="nav-actions">
-                        <a class="back-to-main" id="backToMain">
-                            <i class="fas fa-arrow-left"></i> Back to Main
-                        </a>
+                </div>
+                <div class="tokenomics-list">
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">Liquidity Pool</span>
+                        <span class="tokenomics-percentage">40%</span>
+                    </div>
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">CEX Listings</span>
+                        <span class="tokenomics-percentage">16%</span>
+                    </div>
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">Burn</span>
+                        <span class="tokenomics-percentage">22%</span>
+                    </div>
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">Development</span>
+                        <span class="tokenomics-percentage">12%</span>
+                    </div>
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">Airdrop</span>
+                        <span class="tokenomics-percentage">4%</span>
+                    </div>
+                    <div class="tokenomics-item">
+                        <span class="tokenomics-category">Moderation</span>
+                        <span class="tokenomics-percentage">5%</span>
                     </div>
                 </div>
             </div>
-        </header>
-        <div class="container">
-            <div class="whitepaper-content">
-                <iframe 
-                    title="DADACOIN Whitepaper"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                    loading="lazy">
-                </iframe>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p><strong>Total Supply:</strong> 500,000,000,000,001 DADA</p>
+                <p>No presale · No taxes · Liquidity locked</p>
             </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="roadmap">
+        <div class="container">
+            <h2 class="section-title">Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 1 – Launch & Expansion</div>
+                    <div class="roadmap-desc">
+                        <p>Release of the official website and community channels (Telegram, X)</p>
+                        <p>Publication of the community guide</p>
+                        <p>Community building (organization and moderation)</p>
+                        <p>Listing on CoinGecko and CoinMarketCap</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 2 – Growth & Visibility</div>
+                    <div class="roadmap-desc">
+                        <p>Release and diffusion of DADACOIN memes</p>
+                        <p>Expansion of a large community</p>
+                        <p>Deployment of the token on PancakeSwap</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 3 – Recognition & Partnerships</div>
+                    <div class="roadmap-desc">
+                        <p>Listings on major CEX platforms</p>
+                        <p>Partnerships with artists, Web3 projects, and communities</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 4 – Community PvP Game</div>
+                    <div class="roadmap-desc">
+                        <p>Creation of an online game where players form a team of six monsters and battle in turn-based duels</p>
+                        <p>Both players wager DADA tokens, and the winner takes the entire pot</p>
+                        <p>The game's development will be funded by the development reserve</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="chatbot-toggle">
+        <button class="toggle-btn" id="chatbotToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <span>DADACOIN AI Assistant</span>
+            <button class="close-chatbot" id="closeChatbot">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                Hello! I'm the DADACOIN AI Assistant. How can I help you learn more about our project?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Ask a question about DADACOIN...">
+            <button id="sendButton">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
 
-    <!-- Main Website Content -->
-    <div id="mainContent">
-        <header>
-            <div class="container">
-                <nav class="navbar">
-                    <div class="logo">
-                        <img src="https://i.postimg.cc/hj1S9gKf/IMG-20251115-170233-360.jpg" alt="DADACOIN Logo">
-                        <span class="logo-text">DADACOIN</span>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Social Media Links</h3>
+                    <div class="social-icons">
+                        <a href="https://youtube.com/@dadacoin?si=dLs7IlsuhqFHOv" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://x.com/memedadacoin" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/+qwE1nrnw9s9mMGM0" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/dadacoin" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@dadacoin4" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
-                    <div class="nav-links" id="navLinks">
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
                         <a href="#about">About</a>
                         <a href="#tokenomics">Tokenomics</a>
                         <a href="#roadmap">Roadmap</a>
                     </div>
-                    <div class="nav-actions">
-                        <a href="/whitepaper/" class="btn btn-secondary">Read Whitepaper</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <div class="footer-links">
+                        <!-- UPDATED: Now links to /whitepaper/ folder -->
+                        <a href="/whitepaper/">Whitepaper</a>
+                        <a href="#">Smart Contract</a>
+                        <a href="#">Audit Report</a>
+                        <a href="#">Community Guide</a>
                     </div>
-                    <div class="mobile-menu" id="mobileMenu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </nav>
-            </div>
-        </header>
-
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>The Grumpy Panda Memecoin</h1>
-                    <p>DADACOIN is a satire, a caricature of the crypto world, built through dark humor and the sharp personality of its grumpy panda mascot.</p>
-                    <div class="hero-actions">
-                        <a href="#" class="btn btn-secondary" id="openWhitepaperHero">Read Whitepaper</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:info@dadacoin.com">contact@memedadacoin.com</a>
+                        <a href="#">Support</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">ABOUT DADACOIN</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Most popular memecoins rely on bright colors, cute animals, and a cheerful atmosphere. As a result, they all end up looking the same — the same style, the same energy, the same empty promises.</p>
-                        <p>DADACOIN will not follow this formula. Instead, it will take a radically different approach. Its mascot is a grumpy panda, tired of market illusions and amused by the surrounding naivety — a character who finds nearly everything ridiculous, especially other memecoins he sees as simple clones.</p>
-                        <p>DADACOIN will embody an original ideology: a satire, a caricature of the crypto world, built through dark humor and the sharp personality of its mascot. It is a parody of the market, a universe that has become too euphoric, too noisy, too "woof-woof."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tokenomics" class="tokenomics">
-            <div class="container">
-                <h2 class="section-title">Tokenomics</h2>
-                <div class="tokenomics-content">
-                    <div class="tokenomics-chart">
-                        <div class="chart-container">
-                            <canvas id="tokenomicsChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="tokenomics-list">
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">Liquidity Pool</span>
-                            <span class="tokenomics-percentage">40%</span>
-                        </div>
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">CEX Listings</span>
-                            <span class="tokenomics-percentage">16%</span>
-                        </div>
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">Burn</span>
-                            <span class="tokenomics-percentage">22%</span>
-                        </div>
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">Development</span>
-                            <span class="tokenomics-percentage">12%</span>
-                        </div>
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">Airdrop</span>
-                            <span class="tokenomics-percentage">4%</span>
-                        </div>
-                        <div class="tokenomics-item">
-                            <span class="tokenomics-category">Moderation</span>
-                            <span class="tokenomics-percentage">5%</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <p><strong>Total Supply:</strong> 500,000,000,000,001 DADA</p>
-                    <p>No presale · No taxes · Liquidity locked</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="roadmap" class="roadmap">
-            <div class="container">
-                <h2 class="section-title">Roadmap</h2>
-                <div class="roadmap-timeline">
-                    <div class="roadmap-item">
-                        <div class="roadmap-phase">Phase 1 – Launch & Expansion</div>
-                        <div class="roadmap-desc">
-                            <p>Release of the official website and community channels (Telegram, X)</p>
-                            <p>Publication of the community guide</p>
-                            <p>Community building (organization and moderation)</p>
-                            <p>Listing on CoinGecko and CoinMarketCap</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-phase">Phase 2 – Growth & Visibility</div>
-                        <div class="roadmap-desc">
-                            <p>Release and diffusion of DADACOIN memes</p>
-                            <p>Expansion of a large community</p>
-                            <p>Deployment of the token on PancakeSwap</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-phase">Phase 3 – Recognition & Partnerships</div>
-                        <div class="roadmap-desc">
-                            <p>Listings on major CEX platforms</p>
-                            <p>Partnerships with artists, Web3 projects, and communities</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-phase">Phase 4 – Community PvP Game</div>
-                        <div class="roadmap-desc">
-                            <p>Creation of an online game where players form a team of six monsters and battle in turn-based duels</p>
-                            <p>Both players wager DADA tokens, and the winner takes the entire pot</p>
-                            <p>The game's development will be funded by the development reserve</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="chatbot-toggle">
-            <button class="toggle-btn" id="chatbotToggle">
-                <i class="fas fa-robot"></i>
-            </button>
-        </div>
-
-        <div class="chatbot-container" id="chatbotContainer">
-            <div class="chatbot-header">
-                <span>DADACOIN AI Assistant</span>
-                <button class="close-chatbot" id="closeChatbot">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    Hello! I'm the DADACOIN AI Assistant. How can I help you learn more about our project?
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="chatInput" placeholder="Ask a question about DADACOIN...">
-                <button id="sendButton">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DADACOIN. All rights reserved.</p>
             </div>
         </div>
-
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-column">
-                        <h3>Social Media Links</h3>
-                        <div class="social-icons">
-                            <a href="https://youtube.com/@dadacoin?si=dLs7IlsuhqFHOv" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                            <a href="https://x.com/memedadacoin" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-                            <a href="https://t.me/+qwE1nrnw9s9mMGM0" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                            <a href="https://www.instagram.com/dadacoin" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.tiktok.com/@dadacoin4" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Quick Links</h3>
-                        <div class="footer-links">
-                            <a href="#about">About</a>
-                            <a href="#tokenomics">Tokenomics</a>
-                            <a href="#roadmap">Roadmap</a>
-                        </div>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Resources</h3>
-                        <div class="footer-links">
-                            <a href="#" id="openWhitepaperFooter">Whitepaper</a>
-                            <a href="#">Smart Contract</a>
-                            <a href="#">Audit Report</a>
-                            <a href="#">Community Guide</a>
-                        </div>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Contact</h3>
-                        <div class="footer-links">
-                            <a href="mailto:info@dadacoin.com">contact@memedadacoin.com</a>
-                            <a href="#">Support</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 DADACOIN. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Whitepaper functionality
-        const whitepaperPage = document.getElementById('whitepaperPage');
-        const mainContent = document.getElementById('mainContent');
-        const backToMain = document.getElementById('backToMain');
-        
-        // Get all whitepaper buttons
-        const openWhitepaperButtons = document.querySelectorAll('#openWhitepaper, #openWhitepaperHero, #openWhitepaperFooter');
-        
-        // Function to open whitepaper
-        function openWhitepaper() {
-            mainContent.style.display = 'none';
-            whitepaperPage.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            // Update URL without reloading page
-            history.pushState({ page: 'whitepaper' }, '', '#whitepaper');
-        }
-        
-        // Function to close whitepaper
-        function closeWhitepaper() {
-            whitepaperPage.style.display = 'none';
-            mainContent.style.display = 'block';
-            document.body.style.overflow = 'auto';
-            // Update URL back to main
-            history.pushState({ page: 'main' }, '', window.location.pathname);
-        }
-        
-        // Add event listeners to all whitepaper buttons
-        openWhitepaperButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                openWhitepaper();
-            });
-        });
-        
-        // Back to main button
-        backToMain.addEventListener('click', closeWhitepaper);
-        
-        // Handle browser back/forward buttons
-        window.addEventListener('popstate', function(event) {
-            if (window.location.hash === '#whitepaper') {
-                openWhitepaper();
-            } else {
-                closeWhitepaper();
-            }
-        });
-        
         // Mobile Menu Toggle
         document.getElementById('mobileMenu').addEventListener('click', function() {
             const navLinks = document.getElementById('navLinks');
@@ -1155,9 +1023,6 @@
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Don't prevent default if we're already in whitepaper mode
-                if (whitepaperPage.style.display === 'block') return;
-                
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1170,4 +1035,4 @@
         });
     </script>
 </body>
-                    </html>
+    </html>
