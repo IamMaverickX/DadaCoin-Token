@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DADACOIN — Official Whitepaper</title>
+  <style>
+    /* Preload styles - Load immediately */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2) format('woff2');
+    }
+    
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2) format('woff2');
+    }
+    
+    /* Critical CSS - Loads first */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f172a;
+      color: white;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header - Simplified */
+    .header {
+      text-align: center;
+      padding: 40px 0 30px;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 42px;
+      background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    
+    .token-info {
+      display: inline-block;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 12px;
+      padding: 15px 25px;
+      border: 1px solid rgba(100, 116, 139, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    .token-info p {
+      margin: 5px 0;
+      color: #e2e8f0;
+      font-size: 15px;
+    }
+    
+    .token-info strong {
+      color: #60a5fa;
+    }
+    
+    /* Whitepaper Images - Optimized */
+    .whitepaper-container {
+      background: #1e293b;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      margin-bottom: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .whitepaper-title {
+      text-align: center;
+      font-size: 32px;
+      color: white;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    
+    /* Page images - Critical for fast loading */
+    .page-wrapper {
+      position: relative;
+      margin-bottom: 50px;
+      transition: transform 0.2s ease;
+    }
+    
+    .page-wrapper:hover {
+      transform: translateY(-5px);
+    }
+    
+    .page-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #0f172a;
+      min-height: 300px;
+      transition: all 0.3s ease;
+    }
+    
+    .page-image.loading {
+      opacity: 0;
+    }
+    
+    .page-image.loaded {
+      opacity: 1;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .page-number {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Preloading indicator */
+    .preload-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f172a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(96, 165, 250, 0.3);
+      border-radius: 50%;
+      border-top-color: #60a5fa;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      color: #cbd5e1;
+      font-size: 16px;
+    }
+    
+    /* Navigation */
+    .page-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      background: rgba(30, 41, 59, 0.95);
+      border-radius: 50px;
+      padding: 10px 25px;
+      display: flex;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+    
+    .nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(96, 165, 250, 0.1);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .nav-btn:hover {
+      background: rgba(96, 165, 250, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .nav-btn.active {
+      background: #60a5fa;
+      color: white;
+    }
+    
+    /* Progress indicator */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 101;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      padding: 40px 0;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer p {
+      margin: 8px 0;
+      opacity: 0.8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+      
+      .header {
+        padding: 30px 0;
+      }
+      
+      h1 {
+        font-size: 36px;
+      }
+      
+      .whitepaper-container {
+        padding: 25px;
+      }
+      
+      .whitepaper-title {
+        font-size: 28px;
+      }
+      
+      .page-nav {
+        bottom: 20px;
+        padding: 8px 20px;
+      }
+      
+      .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 32px;
+      }
+      
+      .whitepaper-container {
+        padding: 20px 15px;
+      }
+      
+      .page-nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        border-radius: 15px;
+        padding: 15px;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preload overlay -->
+  <div class="preload-overlay" id="preloadOverlay">
+    <div class="loader"></div>
+    <div class="loading-text">Loading DADACOIN Whitepaper...</div>
+  </div>
+  
+  <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <!-- Page navigation -->
+  <div class="page-nav" id="pageNav">
+    <a href="#page-1" class="nav-btn active">1</a>
+    <a href="#page-2" class="nav-btn">2</a>
+    <a href="#page-3" class="nav-btn">3</a>
+    <a href="#page-4" class="nav-btn">4</a>
+    <a href="#page-5" class="nav-btn">5</a>
+    <a href="#page-6" class="nav-btn">6</a>
+    <a href="#page-7" class="nav-btn">7</a>
+    <a href="#page-8" class="nav-btn">8</a>
+  </div>
+  
+  <div class="container">
+    <!-- Header - Simplified without logo -->
+    <header class="header">
+      <h1>DADACOIN</h1>
+      <p class="subtitle">Official Whitepaper</p>
+      <div class="token-info">
+        <p><strong>Token:</strong> DADA • <strong>Network:</strong> Binance Smart Chain</p>
+        <p><strong>Total Supply:</strong> 500,000,000,000,001 DADA</p>
+      </div>
+    </header>
+    
+    <!-- Whitepaper Images -->
+    <main class="whitepaper-container">
+      <h2 class="whitepaper-title">Whitepaper</h2>
+      
+      <!-- Page 1 -->
+      <div class="page-wrapper" id="page-1">
+        <img src="page_1.png" 
+             alt="DADACOIN Whitepaper - Page 1: Cover" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 1 of 8 - Cover</div>
+      </div>
+      
+      <!-- Page 2 -->
+      <div class="page-wrapper" id="page-2">
+        <img src="page_2.png" 
+             alt="DADACOIN Whitepaper - Page 2: Vision and Mission" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 2 of 8 - Vision and Mission</div>
+      </div>
+      
+      <!-- Page 3 -->
+      <div class="page-wrapper" id="page-3">
+        <img src="page_3.png" 
+             alt="DADACOIN Whitepaper - Page 3: Objective" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 3 of 8 - Objective</div>
+      </div>
+      
+      <!-- Page 4 -->
+      <div class="page-wrapper" id="page-4">
+        <img src="page_4.png" 
+             alt="DADACOIN Whitepaper - Page 4: Tokenomics" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 4 of 8 - Tokenomics</div>
+      </div>
+      
+      <!-- Page 5 -->
+      <div class="page-wrapper" id="page-5">
+        <img src="page_5.png" 
+             alt="DADACOIN Whitepaper - Page 5: Roadmap" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 5 of 8 - Roadmap</div>
+      </div>
+      
+      <!-- Page 6 -->
+      <div class="page-wrapper" id="page-6">
+        <img src="page_6.png" 
+             alt="DADACOIN Whitepaper - Page 6: Security and Governance" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 6 of 8 - Security and Governance</div>
+      </div>
+      
+      <!-- Page 7 -->
+      <div class="page-wrapper" id="page-7">
+        <img src="page_7.png" 
+             alt="DADACOIN Whitepaper - Page 7: Team & Origins" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 7 of 8 - Team & Origins</div>
+      </div>
+      
+      <!-- Page 8 -->
+      <div class="page-wrapper" id="page-8">
+        <img src="page_8.png" 
+             alt="DADACOIN Whitepaper - Page 8: Disclaimer" 
+             class="page-image loading"
+             onload="imageLoaded(this)"
+             onerror="imageError(this)"
+             width="940"
+             height="1330">
+        <div class="page-number">Page 8 of 8 - Disclaimer</div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 DADACOIN — All rights reserved</p>
+      <p>Official Whitepaper — For community and informational purposes only</p>
+      <p style="margin-top: 15px; font-size: 12px; color: #64748b;">
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Preload all images immediately when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageUrls = [
+        'page_1.png',
+        'page_2.png',
+        'page_3.png',
+        'page_4.png',
+        'page_5.png',
+        'page_6.png',
+        'page_7.png',
+        'page_8.png'
+      ];
+      
+      // Preload images
+      imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
+      
+      // Hide preloader after 1 second (or when all images loaded)
+      setTimeout(() => {
+        document.getElementById('preloadOverlay').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('preloadOverlay').style.display = 'none';
+        }, 500);
+      }, 800);
+    });
+    
+    // Image loading handlers
+    function imageLoaded(img) {
+      img.classList.remove('loading');
+      img.classList.add('loaded');
+      checkAllImagesLoaded();
+    }
+    
+    function imageError(img) {
+      img.classList.remove('loading');
+      img.alt = 'Image failed to load';
+      checkAllImagesLoaded();
+    }
+    
+    let loadedImages = 0;
+    function checkAllImagesLoaded() {
+      loadedImages++;
+      if (loadedImages >= 8) {
+        // All images loaded
+        document.getElementById('preloadOverlay').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('preloadOverlay').style.display = 'none';
+        }, 300);
+      }
+    }
+    
+    // Progress bar
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+      
+      // Update active nav button
+      updateActiveNav();
+    });
+    
+    // Update active navigation
+    function updateActiveNav() {
+      const pageWrappers = document.querySelectorAll('.page-wrapper');
+      const navBtns = document.querySelectorAll('.nav-btn');
+      
+      let currentPage = 0;
+      const scrollPosition = window.scrollY + 100;
+      
+      pageWrappers.forEach((wrapper, index) => {
+        const wrapperTop = wrapper.offsetTop;
+        const wrapperHeight = wrapper.offsetHeight;
+        
+        if (scrollPosition >= wrapperTop && scrollPosition < wrapperTop + wrapperHeight) {
+          currentPage = index + 1;
+        }
+      });
+      
+      navBtns.forEach((btn, index) => {
+        if (index === currentPage - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+    
+    // Smooth scrolling
+    document.querySelectorAll('.nav-btn').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Intersection Observer for lazy loading (optional enhancement)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target.querySelector('img');
+          if (img && !img.classList.contains('loaded')) {
+            // Force reload if not loaded yet
+            const src = img.src;
+            img.src = '';
+            setTimeout(() => {
+              img.src = src;
+            }, 50);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Observe all page wrappers
+    document.querySelectorAll('.page-wrapper').forEach(wrapper => {
+      observer.observe(wrapper);
+    });
+    
+    // Initial update
+    updateActiveNav();
+  </script>
+</body>
+</html>
