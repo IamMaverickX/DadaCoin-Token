@@ -1144,22 +1144,34 @@
             history.pushState({ page: 'main' }, '', window.location.pathname);
         }
 
-        // Generate audit images (18 for audit1, 4 for audit2)
-        function generateAuditImages(containerId, imageCount, prefix) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            
-            for (let i = 1; i <= imageCount; i++) {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'audit-image-container';
+        // Generate audit images with CORRECT file paths (for flat structure)
+function generateAuditImages(containerId, imageCount, prefix) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    for (let i = 1; i <= imageCount; i++) {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'audit-image-container';
+        
+        const img = document.createElement('img');
+        // FIXED: Direct file names without folder paths
+        img.src = `${prefix}${i}.png`;
+        img.alt = `Audit ${prefix === 'Audit 1 ' ? '1' : '2'} - Page ${i}`;
+        img.loading = 'lazy';
+        img.style.maxWidth = '100%';
+        img.style.height = 'auto';
+        img.style.display = 'block';
+        img.style.margin = '0 auto';
+        
+        imgContainer.appendChild(img);
+        container.appendChild(imgContainer);
+    }
+}
+
+// Initialize audit images with CORRECT file names
+generateAuditImages('audit1Images', 18, 'Audit 1 ');
+generateAuditImages('audit2Images', 4, 'Audit 2 ');
                 
-                const img = document.createElement('img');
-                img.src = `${prefix}-${i}.png`;
-                img.alt = `Audit ${prefix.includes('1') ? '1' : '2'} - Page ${i}`;
-                img.loading = 'lazy';
-                
-                imgContainer.appendChild(img);
-                container.appendChild(imgContainer);
 // Audit Functionality
 const audit1Btn = document.getElementById('audit1Btn');
 const audit2Btn = document.getElementById('audit2Btn');
