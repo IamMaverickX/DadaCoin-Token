@@ -52,6 +52,78 @@
             margin: 0 auto;
         }
 
+        /* Audit Page Styles */
+        .audit-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+            display: none;
+        }
+
+        .audit-header {
+            background-color: var(--card-bg);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        .audit-content {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .audit-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .audit-image-container {
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .audit-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        /* Audit Buttons Section */
+        .audit-buttons {
+            padding: 3rem 0;
+            background-color: var(--secondary);
+            text-align: center;
+        }
+
+        .audit-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .audit-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            min-width: 180px;
+        }
+
         /* Header & Navigation */
         header {
             background-color: rgba(255, 255, 255, 0.95);
@@ -671,6 +743,16 @@
                 right: 15px;
                 bottom: 90px;
             }
+
+            .audit-buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .audit-btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -697,6 +779,57 @@
     </style>
 </head>
 <body>
+    <!-- Audit Pages -->
+    <div class="audit-page" id="audit1Page">
+        <header class="audit-header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <img src="https://i.postimg.cc/hj1S9gKf/IMG-20251115-170233-360.jpg" alt="DADACOIN Logo">
+                        <span class="logo-text">DADACOIN Audit 1</span>
+                    </div>
+                    <div class="nav-actions">
+                        <a class="back-to-main audit-back-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Main
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="audit-content">
+                <div class="audit-images" id="audit1Images">
+                    <!-- Audit 1 images will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="audit-page" id="audit2Page">
+        <header class="audit-header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <img src="https://i.postimg.cc/hj1S9gKf/IMG-20251115-170233-360.jpg" alt="DADACOIN Logo">
+                        <span class="logo-text">DADACOIN Audit 2</span>
+                    </div>
+                    <div class="nav-actions">
+                        <a class="back-to-main audit-back-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Main
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="audit-content">
+                <div class="audit-images" id="audit2Images">
+                    <!-- Audit 2 images will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Website Content -->
     <header>
         <div class="container">
@@ -709,9 +842,9 @@
                     <a href="#about">About</a>
                     <a href="#tokenomics">Tokenomics</a>
                     <a href="#roadmap">Roadmap</a>
+                    <a href="#audits">Audits</a>
                 </div>
                 <div class="nav-actions">
-                    <!-- UPDATED: Now links to /whitepaper/ folder -->
                     <a href="/whitepaper/" class="btn btn-secondary">Whitepaper</a>
                 </div>
                 <div class="mobile-menu" id="mobileMenu">
@@ -727,7 +860,6 @@
                 <h1>The Grumpy Panda Memecoin</h1>
                 <p>DADACOIN is a satire, a caricature of the crypto world, built through dark humor and the sharp personality of its grumpy panda mascot.</p>
                 <div class="hero-actions">
-                    <!-- UPDATED: Now links to /whitepaper/ folder -->
                     <a href="/whitepaper/" class="btn btn-secondary">Read Whitepaper</a>
                 </div>
             </div>
@@ -830,6 +962,19 @@
         </div>
     </section>
 
+    <section id="audits" class="audit-buttons">
+        <div class="container">
+            <h2 class="section-title">Security Audits</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                DADACOIN has undergone comprehensive security audits to ensure the safety and integrity of our smart contract. Click below to view the audit reports.
+            </p>
+            <div class="audit-buttons-container">
+                <button class="btn btn-primary audit-btn" id="audit1Btn">View Audit 1 Report</button>
+                <button class="btn btn-primary audit-btn" id="audit2Btn">View Audit 2 Report</button>
+            </div>
+        </div>
+    </section>
+
     <div class="chatbot-toggle">
         <button class="toggle-btn" id="chatbotToggle">
             <i class="fas fa-robot"></i>
@@ -862,11 +1007,18 @@
                 <div class="footer-column">
                     <h3>Social Media Links</h3>
                     <div class="social-icons">
-                        <a href="https://youtube.com/@dadacoin?si=dLs7IlsuhqFHOv" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://medium.com/@dadacoin" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
+                        <a href="https://bitcointalk.org/index.php?action=profile;u=3738891;sa=showPosts" target="_blank" title="BitcoinTalk"><i class="fab fa-btc"></i></a>
+                        <a href="https://github.com/DadacoinOfficial/dadacoin-smart-contract" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://bscscan.com/token/0x688A09C98b3469EAAb48a2bEE1c48b9d133e6567" target="_blank" title="BSCScan"><i class="fas fa-search"></i></a>
+                        <a href="https://youtube.com/@dadacoin?si=eL3vWzXmvNoH5Hlg" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/dadacoin-token/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="https://x.com/memedadacoin" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
                         <a href="https://t.me/+qwE1nrnw9s9mMGM0" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="https://www.instagram.com/dadacoin" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@dadacoin4" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/dadacoin?igsh=ZmZwbDJiZWc1dmFl" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pin.it/5sZzHoNo0" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="https://www.facebook.com/share/1AdHTNzabQ/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.reddit.com/user/Dadacoin-Official/" target="_blank" title="Reddit"><i class="fab fa-reddit"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -875,15 +1027,17 @@
                         <a href="#about">About</a>
                         <a href="#tokenomics">Tokenomics</a>
                         <a href="#roadmap">Roadmap</a>
+                        <a href="#audits">Audits</a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Resources</h3>
                     <div class="footer-links">
-                        <!-- UPDATED: Now links to /whitepaper/ folder -->
                         <a href="/whitepaper/">Whitepaper</a>
-                        <a href="#">Smart Contract</a>
-                        <a href="#">Audit Report</a>
+                        <a href="#" id="audit1Link">Audit Report 1</a>
+                        <a href="#" id="audit2Link">Audit Report 2</a>
+                        <a href="https://github.com/DadacoinOfficial/dadacoin-smart-contract" target="_blank">Smart Contract</a>
+                        <a href="https://bscscan.com/token/0x688A09C98b3469EAAb48a2bEE1c48b9d133e6567" target="_blank">BSCScan Explorer</a>
                         <a href="#">Community Guide</a>
                     </div>
                 </div>
@@ -916,7 +1070,7 @@
             });
         });
 
-        // Tokenomics Chart with vibrant colors
+        // Tokenomics Chart
         const ctx = document.getElementById('tokenomicsChart').getContext('2d');
         const tokenomicsChart = new Chart(ctx, {
             type: 'doughnut',
@@ -950,6 +1104,97 @@
             }
         });
 
+        // Audit Functionality
+        const audit1Btn = document.getElementById('audit1Btn');
+        const audit2Btn = document.getElementById('audit2Btn');
+        const audit1Link = document.getElementById('audit1Link');
+        const audit2Link = document.getElementById('audit2Link');
+        const audit1Page = document.getElementById('audit1Page');
+        const audit2Page = document.getElementById('audit2Page');
+        const mainContent = document.querySelector('body > :not(.audit-page)');
+        const auditBackBtns = document.querySelectorAll('.audit-back-btn');
+
+        // Function to open audit page
+        function openAudit(auditPage) {
+            // Hide main content
+            document.querySelectorAll('header, section, .chatbot-toggle, footer').forEach(el => {
+                el.style.display = 'none';
+            });
+            // Show audit page
+            auditPage.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Update URL without reloading page
+            const auditNum = auditPage.id.includes('1') ? 'audit1' : 'audit2';
+            history.pushState({ page: auditNum }, '', `#${auditNum}`);
+        }
+
+        // Function to close audit page
+        function closeAudit() {
+            // Hide all audit pages
+            document.querySelectorAll('.audit-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            // Show main content
+            document.querySelectorAll('header, section, .chatbot-toggle, footer').forEach(el => {
+                el.style.display = '';
+            });
+            document.body.style.overflow = 'auto';
+            // Update URL back to main
+            history.pushState({ page: 'main' }, '', window.location.pathname);
+        }
+
+        // Generate audit images (18 for audit1, 4 for audit2)
+        function generateAuditImages(containerId, imageCount, prefix) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= imageCount; i++) {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'audit-image-container';
+                
+                const img = document.createElement('img');
+                img.src = `${prefix}-${i}.png`;
+                img.alt = `Audit ${prefix.includes('1') ? '1' : '2'} - Page ${i}`;
+                img.loading = 'lazy';
+                
+                imgContainer.appendChild(img);
+                container.appendChild(imgContainer);
+            }
+        }
+
+        // Initialize audit images
+        generateAuditImages('audit1Images', 18, '1.png');
+        generateAuditImages('audit2Images', 4, '1.png');
+
+        // Event listeners for audit buttons
+        audit1Btn.addEventListener('click', () => openAudit(audit1Page));
+        audit2Btn.addEventListener('click', () => openAudit(audit2Page));
+        audit1Link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAudit(audit1Page);
+        });
+        audit2Link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAudit(audit2Page);
+        });
+
+        // Event listeners for back buttons
+        auditBackBtns.forEach(btn => {
+            btn.addEventListener('click', closeAudit);
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (window.location.hash === '#audit1') {
+                openAudit(audit1Page);
+            } else if (window.location.hash === '#audit2') {
+                openAudit(audit2Page);
+            } else {
+                closeAudit();
+            }
+        });
+
         // Chatbot Functionality
         const chatbotToggle = document.getElementById('chatbotToggle');
         const chatbotContainer = document.getElementById('chatbotContainer');
@@ -958,7 +1203,6 @@
         const chatInput = document.getElementById('chatInput');
         const sendButton = document.getElementById('sendButton');
 
-        // Toggle chatbot visibility
         chatbotToggle.addEventListener('click', function() {
             chatbotContainer.style.display = chatbotContainer.style.display === 'flex' ? 'none' : 'flex';
         });
@@ -967,7 +1211,6 @@
             chatbotContainer.style.display = 'none';
         });
 
-        // Predefined responses
         const responses = {
             "what is dadacoin": "DADACOIN is a community-driven memecoin that goes against current standards. It's a satire of the crypto world with a grumpy panda mascot who finds other memecoins ridiculous.",
             "tokenomics": "DADACOIN has a fixed supply of 500,000,000,000,001 tokens. Distribution: 40% Liquidity Pool, 16% CEX Listings, 22% Burn, 12% Development, 4% Airdrop, 5% Moderation.",
@@ -978,7 +1221,8 @@
             "supply": "Total Supply: 500,000,000,000,001 DADA. Maximum Supply: 500,000,000,000,001 DADA.",
             "security": "The smart contract will undergo two independent security audits. Its source code will be public, readable on BscScan and GitHub.",
             "social media": "You can find us on YouTube, X (Twitter), Telegram, Instagram, and TikTok. Links are in the footer of this website.",
-            "default": "I'm not sure I understand. Could you rephrase your question? You can ask me about DADACOIN's tokenomics, roadmap, team, or what makes it unique."
+            "audit": "DADACOIN has undergone two comprehensive security audits. You can view the audit reports in the 'Security Audits' section above the footer.",
+            "default": "I'm not sure I understand. Could you rephrase your question? You can ask me about DADACOIN's tokenomics, roadmap, team, audits, or what makes it unique."
         };
 
         function addMessage(message, isUser) {
@@ -1006,7 +1250,6 @@
                 addMessage(question, true);
                 chatInput.value = '';
                 
-                // Simulate thinking delay
                 setTimeout(() => {
                     const response = getResponse(question);
                     addMessage(response, false);
@@ -1023,6 +1266,7 @@
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#audits') return;
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1035,4 +1279,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
