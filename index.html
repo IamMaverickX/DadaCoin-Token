@@ -1160,40 +1160,97 @@
                 
                 imgContainer.appendChild(img);
                 container.appendChild(imgContainer);
-            }
-        }
+// Audit Functionality
+const audit1Btn = document.getElementById('audit1Btn');
+const audit2Btn = document.getElementById('audit2Btn');
+const audit1Link = document.getElementById('audit1Link');
+const audit2Link = document.getElementById('audit2Link');
+const audit1Page = document.getElementById('audit1Page');
+const audit2Page = document.getElementById('audit2Page');
+const mainContent = document.querySelector('body > :not(.audit-page)');
+const auditBackBtns = document.querySelectorAll('.audit-back-btn');
 
-        // Initialize audit images
-        generateAuditImages('audit1Images', 18, '1.png');
-        generateAuditImages('audit2Images', 4, '1.png');
+// Function to open audit page
+function openAudit(auditPage) {
+    // Hide main content
+    document.querySelectorAll('header, section, .chatbot-toggle, footer').forEach(el => {
+        el.style.display = 'none';
+    });
+    // Show audit page
+    auditPage.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Update URL without reloading page
+    const auditNum = auditPage.id.includes('1') ? 'audit1' : 'audit2';
+    history.pushState({ page: auditNum }, '', `#${auditNum}`);
+}
 
-        // Event listeners for audit buttons
-        audit1Btn.addEventListener('click', () => openAudit(audit1Page));
-        audit2Btn.addEventListener('click', () => openAudit(audit2Page));
-        audit1Link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openAudit(audit1Page);
-        });
-        audit2Link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openAudit(audit2Page);
-        });
+// Function to close audit page
+function closeAudit() {
+    // Hide all audit pages
+    document.querySelectorAll('.audit-page').forEach(page => {
+        page.style.display = 'none';
+    });
+    // Show main content
+    document.querySelectorAll('header, section, .chatbot-toggle, footer').forEach(el => {
+        el.style.display = '';
+    });
+    document.body.style.overflow = 'auto';
+    // Update URL back to main
+    history.pushState({ page: 'main' }, '', window.location.pathname);
+}
 
-        // Event listeners for back buttons
-        auditBackBtns.forEach(btn => {
-            btn.addEventListener('click', closeAudit);
-        });
+// Generate audit images with CORRECT file paths
+function generateAuditImages(containerId, imageCount, folderName) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    
+    for (let i = 1; i <= imageCount; i++) {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'audit-image-container';
+        
+        const img = document.createElement('img');
+        // CORRECT PATH: folderName/1.png, folderName/2.png, etc.
+        img.src = `${folderName}/${i}.png`;
+        img.alt = `Audit ${folderName.includes('1') ? '1' : '2'} - Page ${i}`;
+        img.loading = 'lazy';
+        
+        imgContainer.appendChild(img);
+        container.appendChild(imgContainer);
+    }
+}
 
-        // Handle browser back/forward buttons
-        window.addEventListener('popstate', function(event) {
-            if (window.location.hash === '#audit1') {
-                openAudit(audit1Page);
-            } else if (window.location.hash === '#audit2') {
-                openAudit(audit2Page);
-            } else {
-                closeAudit();
-            }
-        });
+// Initialize audit images with CORRECT folder paths
+generateAuditImages('audit1Images', 18, 'Audit 1');
+generateAuditImages('audit2Images', 4, 'Audit 2');
+
+// Event listeners for audit buttons
+audit1Btn.addEventListener('click', () => openAudit(audit1Page));
+audit2Btn.addEventListener('click', () => openAudit(audit2Page));
+audit1Link.addEventListener('click', (e) => {
+    e.preventDefault();
+    openAudit(audit1Page);
+});
+audit2Link.addEventListener('click', (e) => {
+    e.preventDefault();
+    openAudit(audit2Page);
+});
+
+// Event listeners for back buttons
+auditBackBtns.forEach(btn => {
+    btn.addEventListener('click', closeAudit);
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(event) {
+    if (window.location.hash === '#audit1') {
+        openAudit(audit1Page);
+    } else if (window.location.hash === '#audit2') {
+        openAudit(audit2Page);
+    } else {
+        closeAudit();
+    }
+});
 
         // Chatbot Functionality
         const chatbotToggle = document.getElementById('chatbotToggle');
